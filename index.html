@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>簡易線上聊天</title>
+  <style>
+    body {
+      background: #0f1724;
+      color: #e6eef8;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #chat {
+      width: 90%;
+      max-width: 600px;
+      height: 70vh;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.05);
+    }
+    #inputArea {
+      display: flex;
+      gap: 10px;
+      width: 90%;
+      max-width: 600px;
+    }
+    #msg {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+    #send {
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>簡易線上聊天</h2>
+  <div id="chat"></div>
+  <div id="inputArea">
+    <input type="text" id="msg" placeholder="輸入訊息..." />
+    <button id="send">發送</button>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const msgInput = document.getElementById('msg');
+    const sendBtn = document.getElementById('send');
+
+    const ws = new WebSocket('ws://localhost:8080'); // 可改成實際伺服器
+
+    ws.addEventListener('open', () => {
+      const p = document.createElement('p');
+      p.textContent = '✅ 已連線';
+      chat.appendChild(p);
+    });
+
+    ws.addEventListener('message', (e) => {
+      const p = document.createElement('p');
+      p.textContent = e.data;
+      chat.appendChild(p);
+      chat.scrollTop = chat.scrollHeight;
+    });
+
+    sendBtn.onclick = () => {
+      const text = msgInput.value.trim();
+      if (text) {
+        ws.send(text);
+        msgInput.value = '';
+      }
+    };
+
+    msgInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
+<!-- server.js -->
+<!-- 簡單 WebSocket 廣播伺服器，不記錄訊息，只即時傳送 -->
+
+// server.js
+const express = require('express');
+const http = require('http');
+const WebSocket = require('ws');
+
+const app = express();
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+app.use(express.static(__dirname));
+
+wss.on('connection', ws => {
+  ws.on('message', msg => {
+    wss.clients.forEach(client => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(msg.toString());
+      }
+    });
+  });
+});
+
+const PORT = 8080;
+server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
