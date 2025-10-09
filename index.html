@@ -1,124 +1,141 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>簡易線上聊天</title>
-  <style>
-    body {
-      background: #0f1724;
-      color: #e6eef8;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    #chat {
-      width: 90%;
-      max-width: 600px;
-      height: 70vh;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 10px;
-      overflow-y: auto;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.05);
-    }
-    #inputArea {
-      display: flex;
-      gap: 10px;
-      width: 90%;
-      max-width: 600px;
-    }
-    #msg {
-      flex: 1;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-    }
-    #send {
-      padding: 10px 20px;
-      border-radius: 8px;
-      background: #3b82f6;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習工具導引頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .btn-glow {
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-glow:hover {
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .floating-logo {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .floating-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+        
+        .floating-logo img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+    </style>
 </head>
-<body>
-  <h2>簡易線上聊天</h2>
-  <div id="chat"></div>
-  <div id="inputArea">
-    <input type="text" id="msg" placeholder="輸入訊息..." />
-    <button id="send">發送</button>
-  </div>
+<body class="gradient-bg min-h-full">
+    <div class="min-h-full flex flex-col items-center justify-center p-6">
+        <!-- 標題區域 -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-white mb-4">
+                🎓 左營區 新莊國小 學習工具導引
+            </h1>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto">
+                歡迎使用我們的學習平台！請選擇您想要使用的工具
+            </p>
+        </div>
 
-  <script>
-    const chat = document.getElementById('chat');
-    const msgInput = document.getElementById('msg');
-    const sendBtn = document.getElementById('send');
+        <!-- 按鈕卡片區域 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+            <!-- 科學園遊會 -->
+            <div class="card-hover bg-white rounded-2xl p-8 text-center shadow-lg">
+                <div class="text-6xl mb-4">🔬</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">科學園遊會</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    探索有趣的科學實驗和互動體驗，讓學習變得更加生動有趣！
+                </p>
+                <a href="https://issac-sjps.github.io/ScienceFair" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-glow inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 px-8 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
+                    開始探索 →
+                </a>
+            </div>
 
-    const ws = new WebSocket('ws://localhost:8080'); // 可改成實際伺服器
+            <!-- 國小600單字拼音練習 -->
+            <div class="card-hover bg-white rounded-2xl p-8 text-center shadow-lg">
+                <div class="text-6xl mb-4">📝</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">單字拼音練習</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    國小600個重要單字的拼音練習，提升英語基礎能力！
+                </p>
+                <a href="https://issac-sjps.github.io/SpellingContest" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-glow inline-block bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold py-3 px-8 rounded-full hover:from-green-600 hover:to-blue-600 transition-all duration-300">
+                    開始練習 →
+                </a>
+            </div>
 
-    ws.addEventListener('open', () => {
-      const p = document.createElement('p');
-      p.textContent = '✅ 已連線';
-      chat.appendChild(p);
-    });
+            <!-- 教室座位安排表 -->
+            <div class="card-hover bg-white rounded-2xl p-8 text-center shadow-lg">
+                <div class="text-6xl mb-4">🪑</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">座位安排表</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    輕鬆管理教室座位配置，讓班級管理更有效率！
+                </p>
+                <a href="https://issac-sjps.github.io/ClassroomSeatingChart/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-glow inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold py-3 px-8 rounded-full hover:from-orange-600 hover:to-red-600 transition-all duration-300">
+                    開始安排 →
+                </a>
+            </div>
+        </div>
 
-    ws.addEventListener('message', (e) => {
-      const p = document.createElement('p');
-      p.textContent = e.data;
-      chat.appendChild(p);
-      chat.scrollTop = chat.scrollHeight;
-    });
+        <!-- 底部資訊 -->
+        <div class="mt-16 text-center">
+            <p class="text-blue-100 text-sm">
+                💡 所有工具都會在新分頁中開啟，方便您隨時切換使用
+            </p>
+        </div>
+    </div>
 
-    sendBtn.onclick = () => {
-      const text = msgInput.value.trim();
-      if (text) {
-        ws.send(text);
-        msgInput.value = '';
-      }
-    };
-
-    msgInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        sendBtn.click();
-      }
-    });
-  </script>
-</body>
+    <!-- 浮動校徽 -->
+    <a href="https://issac-sjps.github.io/ClassroomSeatingChart/ScienceFair/logo.gif" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="floating-logo"
+       title="新莊國小校徽">
+        <img src="https://issac-sjps.github.io/ClassroomSeatingChart/ScienceFair/logo.gif" 
+             alt="新莊國小校徽" 
+             onerror="this.src=''; this.alt='校徽載入失敗'; this.style.display='none';">
+    </a>
 </html>
-
-<!-- server.js -->
-<!-- 簡單 WebSocket 廣播伺服器，不記錄訊息，只即時傳送 -->
-
-// server.js
-const express = require('express');
-const http = require('http');
-const WebSocket = require('ws');
-
-const app = express();
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
-
-app.use(express.static(__dirname));
-
-wss.on('connection', ws => {
-  ws.on('message', msg => {
-    wss.clients.forEach(client => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(msg.toString());
-      }
-    });
-  });
-});
-
-const PORT = 8080;
-server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
