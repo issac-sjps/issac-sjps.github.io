@@ -1,141 +1,791 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>學習工具導引頁</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            box-sizing: border-box;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        
-        .btn-glow {
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-glow:hover {
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-        
-        .floating-logo {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .floating-logo:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-        }
-        
-        .floating-logo img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>issac-sjps · Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #080c10;
+      --surface: #0f1419;
+      --border: #1e2a35;
+      --accent: #00d4ff;
+      --accent2: #7c3aed;
+      --text: #e8edf2;
+      --muted: #5c6e7e;
+      --card: #111820;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* === BG GRID === */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* === HEADER === */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 80px 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+    h1 .dim { color: var(--muted); }
+    h1 .glow {
+      color: var(--accent);
+      text-shadow: 0 0 40px rgba(0,212,255,0.5);
+    }
+    .subtitle {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.6s;
+    }
+    .header-links {
+      margin-top: 28px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.8s;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: #33ddff; transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* === DIVIDER === */
+    .section-divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .divider-line {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .divider-line span {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .divider-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* === GRID === */
+    .projects-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* === CARD === */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,212,255,0.1);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .card-lang {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .card-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .card-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+    .card-link {
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: gap 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-link:hover { gap: 10px; }
+    .card-stars {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* === LOADING === */
+    .loading-state {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 60px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* === ADMIN PANEL === */
+    #admin-toggle {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent2);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+      transition: all 0.2s;
+      z-index: 100;
+    }
+    #admin-toggle:hover { transform: scale(1.1); }
+
+    #admin-panel {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+    #admin-panel.open { display: flex; align-items: flex-start; justify-content: center; }
+
+    .admin-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+    }
+    .admin-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .admin-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .close-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 11px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+    input, textarea, select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    textarea { resize: vertical; min-height: 70px; }
+    select option { background: var(--bg); }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    /* Project list in admin */
+    .admin-projects-list {
+      margin-top: 28px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .admin-project-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .admin-project-item .name { font-weight: 500; color: var(--text); }
+    .admin-project-item .url { color: var(--muted); font-size: 11px; }
+    .admin-item-actions { display: flex; gap: 8px; }
+    .btn-danger {
+      background: none;
+      border: 1px solid rgba(239,68,68,0.3);
+      color: rgb(239,68,68);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.2s;
+    }
+    .btn-danger:hover { background: rgba(239,68,68,0.1); }
+    .btn-edit {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.2s;
+    }
+    .btn-edit:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 90px;
+      right: 28px;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 300;
+    }
+    #toast.show { opacity: 1; }
+
+    /* Stat bar */
+    .stat-bar {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 1s;
+    }
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+    .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* FOOTER */
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 40px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Status dot */
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Add mode form section label */
+    .form-section-label {
+      font-size: 14px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 48px 20px 40px; }
+      .projects-grid { padding: 0 20px 48px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+      .section-divider { padding: 0 20px; }
+    }
+  </style>
 </head>
-<body class="gradient-bg min-h-full">
-    <div class="min-h-full flex flex-col items-center justify-center p-6">
-        <!-- 標題區域 -->
-        <div class="text-center mb-12">
-            <h1 class="text-5xl font-bold text-white mb-4">
-                🎓 左營區 新莊國小 學習工具導引
-            </h1>
-            <p class="text-xl text-blue-100 max-w-2xl mx-auto">
-                歡迎使用我們的學習平台！請選擇您想要使用的工具
-            </p>
-        </div>
+<body>
 
-        <!-- 按鈕卡片區域 -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-            <!-- 科學園遊會 -->
-            <div class="card-hover bg-white rounded-2xl p-8 text-center shadow-lg">
-                <div class="text-6xl mb-4">🔬</div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">科學園遊會</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                    探索有趣的科學實驗和互動體驗，讓學習變得更加生動有趣！
-                </p>
-                <a href="https://issac-sjps.github.io/ScienceFair" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="btn-glow inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 px-8 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300">
-                    開始探索 →
-                </a>
-            </div>
-
-            <!-- 國小600單字拼音練習 -->
-            <div class="card-hover bg-white rounded-2xl p-8 text-center shadow-lg">
-                <div class="text-6xl mb-4">📝</div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">單字拼音練習</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                    國小600個重要單字的拼音練習，提升英語基礎能力！
-                </p>
-                <a href="https://issac-sjps.github.io/SpellingContest" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="btn-glow inline-block bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold py-3 px-8 rounded-full hover:from-green-600 hover:to-blue-600 transition-all duration-300">
-                    開始練習 →
-                </a>
-            </div>
-
-            <!-- 教室座位安排表 -->
-            <div class="card-hover bg-white rounded-2xl p-8 text-center shadow-lg">
-                <div class="text-6xl mb-4">🪑</div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">座位安排表</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                    輕鬆管理教室座位配置，讓班級管理更有效率！
-                </p>
-                <a href="https://issac-sjps.github.io/ClassroomSeatingChart/" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="btn-glow inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold py-3 px-8 rounded-full hover:from-orange-600 hover:to-red-600 transition-all duration-300">
-                    開始安排 →
-                </a>
-            </div>
-        </div>
-
-        <!-- 底部資訊 -->
-        <div class="mt-16 text-center">
-            <p class="text-blue-100 text-sm">
-                💡 所有工具都會在新分頁中開啟，方便您隨時切換使用
-            </p>
-        </div>
+  <!-- HEADER -->
+  <header>
+    <p class="header-tag"><span class="status-dot"></span>Portfolio · 2025</p>
+    <h1>
+      <span class="dim">issac</span><br/>
+      <span class="glow">sjps</span>
+    </h1>
+    <p class="subtitle">
+      // 前端開發者 · 學生專案集<br/>
+      // HTML · CSS · JavaScript · Firebase
+    </p>
+    <div class="header-links">
+      <a href="https://github.com/issac-sjps" target="_blank" class="btn btn-primary">⟶ GitHub</a>
+      <a href="https://issac-sjps.github.io" target="_blank" class="btn btn-ghost">🌐 個人網頁</a>
     </div>
+    <div class="stat-bar">
+      <div class="stat"><span class="stat-val" id="total-count">—</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-val">HTML</span><span class="stat-label">主要語言</span></div>
+      <div class="stat"><span class="stat-val">2024</span><span class="stat-label">Active Since</span></div>
+    </div>
+  </header>
 
-    <!-- 浮動校徽 -->
-    <a href="https://issac-sjps.github.io/ScienceFair/logo.gif" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       class="floating-logo"
-       title="新莊國小校徽">
-        <img src="https://issac-sjps.github.io/ClassroomSeatingChart/ScienceFair/logo.gif" 
-             alt="新莊國小校徽" 
-             onerror="this.parentElement.innerHTML='🏫'; this.parentElement.style.fontSize='40px'; this.parentElement.style.color='#4F46E5';">
-    </a>
+  <!-- SECTION DIVIDER -->
+  <div class="section-divider">
+    <div class="divider-line"><span>// Projects</span></div>
+  </div>
+
+  <!-- PROJECTS GRID -->
+  <div class="projects-grid" id="projects-grid">
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <span>Loading from Firebase...</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 issac-sjps</span>
+    <span>Built with Firebase + ♡</span>
+  </footer>
+
+  <!-- ADMIN TOGGLE -->
+  <button id="admin-toggle" title="管理專案">⚙</button>
+
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel">
+    <div class="admin-box">
+      <button class="close-btn" id="close-admin">✕</button>
+      <div class="admin-title">⚙ 管理專案</div>
+      <div class="admin-subtitle">新增、編輯或刪除你的 GitHub 專案</div>
+
+      <div class="form-section-label" id="form-mode-label">＋ 新增專案</div>
+      <input type="hidden" id="edit-id"/>
+
+      <div class="form-group">
+        <label>專案名稱</label>
+        <input type="text" id="f-name" placeholder="ScienceFair"/>
+      </div>
+      <div class="form-group">
+        <label>描述</label>
+        <textarea id="f-desc" placeholder="簡短介紹這個專案..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>GitHub URL</label>
+        <input type="text" id="f-url" placeholder="https://github.com/issac-sjps/..."/>
+      </div>
+      <div class="form-group">
+        <label>Live Demo URL (選填)</label>
+        <input type="text" id="f-demo" placeholder="https://issac-sjps.github.io/..."/>
+      </div>
+      <div class="form-group">
+        <label>語言 / 技術</label>
+        <input type="text" id="f-lang" placeholder="HTML"/>
+      </div>
+      <div class="form-group">
+        <label>Emoji 圖示</label>
+        <input type="text" id="f-icon" placeholder="🔬" maxlength="2"/>
+      </div>
+
+      <div class="admin-actions">
+        <button class="btn btn-primary" id="save-btn" onclick="saveProject()">💾 儲存</button>
+        <button class="btn btn-ghost" id="cancel-edit-btn" onclick="cancelEdit()" style="display:none">取消編輯</button>
+      </div>
+
+      <!-- Project List in Admin -->
+      <div class="admin-projects-list">
+        <div class="form-section-label">📋 所有專案</div>
+        <div id="admin-list">載入中...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+  <!-- FIREBASE -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, setDoc, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfiCgkiFNzF1b21moMUwdKd7IaOXBYzBE",
+      authDomain: "mygithub-5dd78.firebaseapp.com",
+      projectId: "mygithub-5dd78",
+      storageBucket: "mygithub-5dd78.firebasestorage.app",
+      messagingSenderId: "345144242024",
+      appId: "1:345144242024:web:feb5c5c13f4613815630dd",
+      measurementId: "G-7X0GE2TPE4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Default projects to seed if Firestore is empty
+    const defaultProjects = [
+      { name: "ScienceFair", desc: "科學展覽相關網頁專案", url: "https://github.com/issac-sjps/ScienceFair", demo: "https://issac-sjps.github.io/ScienceFair", lang: "HTML", icon: "🔬", order: 1 },
+      { name: "SpellingContest", desc: "拼字比賽互動練習工具", url: "https://github.com/issac-sjps/SpellingContest", demo: "https://issac-sjps.github.io/SpellingContest", lang: "HTML", icon: "📝", order: 2 },
+      { name: "issac-sjps.github.io", desc: "個人 GitHub Pages 首頁", url: "https://github.com/issac-sjps/issac-sjps.github.io", demo: "https://issac-sjps.github.io", lang: "HTML", icon: "🌐", order: 3 },
+      { name: "ClassroomSeatChart", desc: "教室座位表排列工具", url: "https://github.com/issac-sjps/ClassroomSeatChart", demo: "https://issac-sjps.github.io/ClassroomSeatChart", lang: "HTML", icon: "🪑", order: 4 },
+      { name: "TWstock", desc: "台灣股市資訊查詢介面", url: "https://github.com/issac-sjps/TWstock", demo: "https://issac-sjps.github.io/TWstock", lang: "HTML", icon: "📈", order: 5 },
+      { name: "EN-Game", desc: "英文學習遊戲互動應用", url: "https://github.com/issac-sjps/EN-Game", demo: "https://issac-sjps.github.io/EN-Game", lang: "HTML", icon: "🎮", order: 6 },
+    ];
+
+    window._db = db;
+    window._collection = collection;
+    window._addDoc = addDoc;
+    window._updateDoc = updateDoc;
+    window._deleteDoc = deleteDoc;
+    window._doc = doc;
+    window._serverTimestamp = serverTimestamp;
+
+    async function seedIfEmpty(db) {
+      const snap = await getDocs(collection(db, "projects"));
+      if (snap.empty) {
+        for (const p of defaultProjects) {
+          await addDoc(collection(db, "projects"), { ...p, createdAt: serverTimestamp() });
+        }
+      }
+    }
+
+    async function loadProjects() {
+      await seedIfEmpty(db);
+      const snap = await getDocs(collection(db, "projects"));
+      const projects = [];
+      snap.forEach(d => projects.push({ id: d.id, ...d.data() }));
+      projects.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+      const grid = document.getElementById("projects-grid");
+      grid.innerHTML = "";
+      document.getElementById("total-count").textContent = projects.length;
+
+      projects.forEach((p, i) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.animationDelay = `${0.1 + i * 0.07}s`;
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-icon">${p.icon || "📁"}</div>
+            <span class="card-lang">${p.lang || "HTML"}</span>
+          </div>
+          <div class="card-name">${p.name}</div>
+          <div class="card-desc">${p.desc || "No description provided."}</div>
+          <div class="card-footer">
+            <a href="${p.url}" target="_blank" class="card-link">View Code →</a>
+            ${p.demo ? `<a href="${p.demo}" target="_blank" class="card-link" style="color:var(--accent2)">Live ↗</a>` : '<span class="card-stars">—</span>'}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Render admin list
+      const adminList = document.getElementById("admin-list");
+      adminList.innerHTML = "";
+      projects.forEach(p => {
+        const row = document.createElement("div");
+        row.className = "admin-project-item";
+        row.innerHTML = `
+          <div>
+            <div class="name">${p.icon || ''} ${p.name}</div>
+            <div class="url">${p.lang || ''}</div>
+          </div>
+          <div class="admin-item-actions">
+            <button class="btn-edit" onclick="editProject('${p.id}')">編輯</button>
+            <button class="btn-danger" onclick="deleteProject('${p.id}', '${p.name}')">刪除</button>
+          </div>
+        `;
+        adminList.appendChild(row);
+      });
+
+      window._projects = projects;
+    }
+
+    window.loadProjects = loadProjects;
+    loadProjects();
+  </script>
+
+  <script>
+    // Admin Panel toggle
+    document.getElementById("admin-toggle").onclick = () => {
+      document.getElementById("admin-panel").classList.add("open");
+    };
+    document.getElementById("close-admin").onclick = () => {
+      document.getElementById("admin-panel").classList.remove("open");
+    };
+    document.getElementById("admin-panel").onclick = (e) => {
+      if (e.target === document.getElementById("admin-panel")) {
+        document.getElementById("admin-panel").classList.remove("open");
+      }
+    };
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2500);
+    }
+
+    function clearForm() {
+      document.getElementById("edit-id").value = "";
+      document.getElementById("f-name").value = "";
+      document.getElementById("f-desc").value = "";
+      document.getElementById("f-url").value = "";
+      document.getElementById("f-demo").value = "";
+      document.getElementById("f-lang").value = "";
+      document.getElementById("f-icon").value = "";
+      document.getElementById("form-mode-label").textContent = "＋ 新增專案";
+      document.getElementById("cancel-edit-btn").style.display = "none";
+    }
+
+    window.cancelEdit = function() { clearForm(); }
+
+    window.editProject = function(id) {
+      const p = window._projects?.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById("edit-id").value = id;
+      document.getElementById("f-name").value = p.name || "";
+      document.getElementById("f-desc").value = p.desc || "";
+      document.getElementById("f-url").value = p.url || "";
+      document.getElementById("f-demo").value = p.demo || "";
+      document.getElementById("f-lang").value = p.lang || "";
+      document.getElementById("f-icon").value = p.icon || "";
+      document.getElementById("form-mode-label").textContent = `✏️ 編輯：${p.name}`;
+      document.getElementById("cancel-edit-btn").style.display = "inline-flex";
+      document.getElementById("f-name").scrollIntoView({ behavior: "smooth" });
+    };
+
+    window.saveProject = async function() {
+      const db = window._db;
+      if (!db) return showToast("Firebase 尚未連線");
+
+      const name = document.getElementById("f-name").value.trim();
+      const desc = document.getElementById("f-desc").value.trim();
+      const url = document.getElementById("f-url").value.trim();
+      const demo = document.getElementById("f-demo").value.trim();
+      const lang = document.getElementById("f-lang").value.trim();
+      const icon = document.getElementById("f-icon").value.trim();
+      const editId = document.getElementById("edit-id").value;
+
+      if (!name || !url) return showToast("⚠ 請填入名稱和 URL");
+
+      const data = { name, desc, url, demo, lang, icon,
+        order: window._projects ? window._projects.length + 1 : 99 };
+
+      try {
+        if (editId) {
+          await window._updateDoc(window._doc(db, "projects", editId), data);
+          showToast(`✅ ${name} 已更新！`);
+        } else {
+          await window._addDoc(window._collection(db, "projects"), {
+            ...data, createdAt: window._serverTimestamp()
+          });
+          showToast(`✅ ${name} 已新增！`);
+        }
+        clearForm();
+        window.loadProjects();
+      } catch(e) {
+        showToast("❌ 儲存失敗：" + e.message);
+      }
+    };
+
+    window.deleteProject = async function(id, name) {
+      if (!confirm(`確定要刪除「${name}」？`)) return;
+      try {
+        await window._deleteDoc(window._doc(window._db, "projects", id));
+        showToast(`🗑 ${name} 已刪除`);
+        window.loadProjects();
+      } catch(e) {
+        showToast("❌ 刪除失敗：" + e.message);
+      }
+    };
+  </script>
+</body>
 </html>
