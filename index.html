@@ -248,7 +248,15 @@
     <div class="stat"><div class="val" id="cnt-cats">—</div><div class="lbl">Categories</div></div>
   </div>
 </header>
-<div class="filter-wrap"><div class="filter-inner" id="ftabs"><button class="ftab active" data-cat="all">全部 <span class="cnt">—</span></button></div></div>
+<div class="filter-wrap">
+  <div class="filter-inner" id="ftabs"><button class="ftab active" data-cat="all">全部 <span class="cnt">—</span></button></div>
+  <div class="font-bar">
+    <span class="font-label">字體</span>
+    <button class="font-btn fs-s" id="fs-s" onclick="setFont('small')" title="小">A</button>
+    <button class="font-btn fs-m" id="fs-m" onclick="setFont('medium')" title="中">A</button>
+    <button class="font-btn fs-l" id="fs-l" onclick="setFont('large')" title="大">A</button>
+  </div>
+</div>
 <div id="main-root"><div class="loader"><div class="spinner"></div><span>從 GitHub API 載入全部專案…</span></div></div>
 <footer><span>© 2025 issac-sjps</span><span>GitHub API + Firebase</span></footer>
 <button id="adm-btn" title="管理專案">⚙</button>
