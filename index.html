@@ -51,6 +51,13 @@
     .fcard-desc{font-size:11.5px;line-height:1.8;margin-bottom:14px;}
     .fpills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
     .fpill{font-size:9px;padding:2px 8px;border-radius:10px;border:1px solid;letter-spacing:.3px;}
+    /* Home Scanner */
+    .fcard-home{background:linear-gradient(160deg,#0a0a1a 0%,#10102e 60%,#0a0a1a 100%);border:1px solid rgba(99,102,241,.38);box-shadow:0 8px 32px rgba(99,102,241,.1);}
+    .fcard-home:hover{box-shadow:0 20px 56px rgba(99,102,241,.22);}
+    .fcard-home::before{background:linear-gradient(90deg,#6366f1,#a855f7,#6366f1);}
+    .fcard-home .fcard-sub{color:#a5b4fc;}
+    .fcard-home .fcard-desc{color:#c7d2fe;}
+    .fcard-home .fpill{border-color:rgba(99,102,241,.3);color:#a5b4fc;background:rgba(99,102,241,.08);}
     /* CHGame */
     .fcard-chgame{background:linear-gradient(160deg,#181000 0%,#2a1f00 60%,#181000 100%);border:1px solid rgba(234,179,8,.38);box-shadow:0 8px 32px rgba(234,179,8,.1);}
     .fcard-chgame:hover{box-shadow:0 20px 56px rgba(234,179,8,.22);}
@@ -344,6 +351,10 @@
       desc:"JLPT N2 日語檢定練習網，內建題庫與詳細解析，隨時隨地都能刷題備考，讓通過 N2 的目標更近一步。"},
     "VocabularyTest":{cat:"學習",icon:"📖",order:28,featured:0,demo:"https://issac-sjps.github.io/VocabularyTest/",
       desc:"學習扶助英語單字每日考試網，專為學習扶助學生打造，每堂課學習 5 個新單字，按日曆選擇日期後即進入對應的遊戲與選擇題練習，讓單字記憶變得有趣、有節奏、有成就感。"},
+    "test":{cat:"其他",icon:"🐍",order:29,featured:0,demo:"",
+      desc:"Python Django 本地練習專案，嘗試以 Python 後端框架開發動態網頁，探索與純前端 HTML 截然不同的伺服器端渲染架構，是踏入後端開發的第一步。（本地運行，無線上 Demo）"},
+    "Home":{cat:"工具",icon:"🔍",order:3,featured:1,demo:"https://issac-sjps.github.io/Home/",
+      desc:"GitHub 全站網頁掃描器！輸入任何 GitHub 帳號，自動呼叫 GitHub API 掃出該帳號底下所有 GitHub Pages 網站，一鍵瀏覽全部已部署頁面，再也不怕漏掉任何一個專案。"},
   };
 
   function autoDemoUrl(name, override) {
@@ -445,6 +456,28 @@
         +'<a href="https://issac-sjps.github.io/TypingGame/CHGame" target="_blank" class="fbtn" style="background:rgba(234,179,8,.18);border:1px solid rgba(234,179,8,.4);color:#fde047;">⚔ 開始冒險</a>'
         +'<a href="https://github.com/issac-sjps/TypingGame" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
         +'</div></div>';
+    }
+    if(p.name==="Home"){
+      return '<div class="fcard fcard-home" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s">'
+        +'<div class="fcard-body">'
+        +'<div class="fcard-top">'
+        +'<div class="fcard-icon">🔍</div>'
+        +'<span class="feat-label" style="background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.35);color:#a5b4fc;">🛰 SCANNER</span>'
+        +'</div>'
+        +'<div class="fcard-name">GitHub 全站掃描器</div>'
+        +'<div class="fcard-sub">Home · 自動掃出所有 GitHub Pages 網站</div>'
+        +'<div class="fcard-desc">輸入任何 GitHub 帳號，一鍵呼叫 GitHub API 自動掃描該帳號下所有已部署的 GitHub Pages 網站，完整列出所有可用網址，再也不怕漏掉任何一個專案。</div>'
+        +'<div class="fpills">'
+        +'<span class="fpill">GitHub API</span>'
+        +'<span class="fpill">自動掃描</span>'
+        +'<span class="fpill">全站列表</span>'
+        +'</div>'
+        +'</div>'
+        +'<div class="fcard-foot">'
+        +'<a href="https://issac-sjps.github.io/Home/?user=issac-sjps" target="_blank" class="fbtn" style="background:rgba(99,102,241,.18);border:1px solid rgba(99,102,241,.4);color:#a5b4fc;">🔍 掃描我的網站</a>'
+        +'<a href="'+p.url+'" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
+        +'</div>'
+        +'</div>';
     }
     if(p.name==="ClassroomSeatChart"){
       return '<div class="fcard fcard-seat" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s"><div class="fcard-body"><div class="fcard-top"><div class="fcard-icon">🪑</div><span class="feat-label">🏫 TEACHER TOOL</span></div><div class="fcard-name">ClassroomSeatChart</div><div class="fcard-sub">教室座位管理 · 教師工具</div><div class="fcard-desc">'+p.desc+'</div><div class="fpills"><span class="fpill">隨機排座</span><span class="fpill">自訂分組</span><span class="fpill">拖曳調整</span></div></div><div class="fcard-foot">'+(p.demo?'<a href="'+p.demo+'" target="_blank" class="fbtn fbtn-seat">✏ 排座位</a>':'')+'<a href="'+p.url+'" target="_blank" class="fbtn fbtn-code">GitHub →</a></div></div>';
