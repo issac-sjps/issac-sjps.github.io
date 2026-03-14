@@ -51,6 +51,13 @@
     .fcard-desc{font-size:11.5px;line-height:1.8;margin-bottom:14px;}
     .fpills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
     .fpill{font-size:9px;padding:2px 8px;border-radius:10px;border:1px solid;letter-spacing:.3px;}
+    /* LearningAssistance */
+    .fcard-la{background:linear-gradient(160deg,#051412 0%,#0a2420 60%,#051412 100%);border:1px solid rgba(20,184,166,.35);box-shadow:0 8px 32px rgba(20,184,166,.08);}
+    .fcard-la:hover{box-shadow:0 20px 56px rgba(20,184,166,.2);}
+    .fcard-la::before{background:linear-gradient(90deg,#14b8a6,#06b6d4,#14b8a6);}
+    .fcard-la .fcard-sub{color:#5eead4;}
+    .fcard-la .fcard-desc{color:#99f6e4;}
+    .fcard-la .fpill{border-color:rgba(20,184,166,.3);color:#5eead4;background:rgba(20,184,166,.08);}
     /* Home Scanner */
     .fcard-home{background:linear-gradient(160deg,#0a0a1a 0%,#10102e 60%,#0a0a1a 100%);border:1px solid rgba(99,102,241,.38);box-shadow:0 8px 32px rgba(99,102,241,.1);}
     .fcard-home:hover{box-shadow:0 20px 56px rgba(99,102,241,.22);}
@@ -351,6 +358,15 @@
       desc:"JLPT N2 日語檢定練習網，內建題庫與詳細解析，隨時隨地都能刷題備考，讓通過 N2 的目標更近一步。"},
     "VocabularyTest":{cat:"學習",icon:"📖",order:28,featured:0,demo:"https://issac-sjps.github.io/VocabularyTest/",
       desc:"學習扶助英語單字每日考試網，專為學習扶助學生打造，每堂課學習 5 個新單字，按日曆選擇日期後即進入對應的遊戲與選擇題練習，讓單字記憶變得有趣、有節奏、有成就感。"},
+    "LearningAssistance":{cat:"教師工具",icon:"🏫",order:1,featured:1,
+      demo:"https://issac-sjps.github.io/LearningAssistance/學習扶助編班網.html",
+      desc:"學習扶助編班系統（V22.0），承辦教師的超強行政神器！拖曳學生卡片完成編班、自動產出開課通知單、點名單、班級總表，還能設定教室、教師分機、致家長信內容，支援 Excel 匯入與 JSON 備份還原。從登錄學生到列印通知單，整個開課流程只需幾分鐘。",
+      links:[
+        {label:"🏫 學習扶助編班網",url:"https://issac-sjps.github.io/LearningAssistance/學習扶助編班網.html",cls:"sl-tower"},
+        {label:"📝 通知單套印",url:"https://issac-sjps.github.io/LearningAssistance/學扶通知單套印.html",cls:"sl-test"},
+        {label:"📞 家長電話產出",url:"https://issac-sjps.github.io/LearningAssistance/學生家長電話產出.html",cls:"sl-vocab"},
+        {label:"🌐 資源入口",url:"https://issac-sjps.github.io/LearningAssistance/",cls:"sl-main"},
+      ]},
     "test":{cat:"其他",icon:"🐍",order:29,featured:0,demo:"",
       desc:"Python Django 本地練習專案，嘗試以 Python 後端框架開發動態網頁，探索與純前端 HTML 截然不同的伺服器端渲染架構，是踏入後端開發的第一步。（本地運行，無線上 Demo）"},
     "Home":{cat:"工具",icon:"🔍",order:3,featured:1,demo:"https://issac-sjps.github.io/Home/",
@@ -476,6 +492,36 @@
         +'<div class="fcard-foot">'
         +'<a href="https://issac-sjps.github.io/Home/?user=issac-sjps" target="_blank" class="fbtn" style="background:rgba(99,102,241,.18);border:1px solid rgba(99,102,241,.4);color:#a5b4fc;">🔍 掃描我的網站</a>'
         +'<a href="'+p.url+'" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
+        +'</div>'
+        +'</div>';
+    }
+    if(p.name==="LearningAssistance"){
+      return '<div class="fcard fcard-la" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s">'
+        +'<div class="fcard-body">'
+        +'<div class="fcard-top">'
+        +'<div class="fcard-icon">🏫</div>'
+        +'<span class="feat-label" style="background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.35);color:#5eead4;">📋 V22.0</span>'
+        +'</div>'
+        +'<div class="fcard-name">學習扶助編班系統</div>'
+        +'<div class="fcard-sub">LearningAssistance · 承辦教師行政神器</div>'
+        +'<div class="fcard-desc">拖曳學生卡片完成編班，自動產出<strong style="color:#5eead4">開課通知單、點名單、班級總表</strong>，可設定教室、教師分機、致家長信內容，支援 Excel 匯入與 JSON 備份還原。從登錄學生到列印通知單，<strong style="color:#5eead4">整個開課流程只需幾分鐘</strong>，大大減輕承辦教師的行政負擔。</div>'
+        +'<div class="fpills">'
+        +'<span class="fpill">拖曳編班</span>'
+        +'<span class="fpill">自動通知單</span>'
+        +'<span class="fpill">Excel 匯入</span>'
+        +'<span class="fpill">JSON 備份</span>'
+        +'<span class="fpill">V22.0 持續更新</span>'
+        +'</div>'
+        +'</div>'
+        +'<div class="fcard-sublinks">'
+        +'<a href="https://issac-sjps.github.io/LearningAssistance/學習扶助編班網.html" target="_blank" class="fcard-sublink sl-tower">🏫 學習扶助編班網</a>'
+        +'<a href="https://issac-sjps.github.io/LearningAssistance/學扶通知單套印.html" target="_blank" class="fcard-sublink sl-test">📝 通知單套印</a>'
+        +'<a href="https://issac-sjps.github.io/LearningAssistance/學生家長電話產出.html" target="_blank" class="fcard-sublink sl-vocab">📞 家長電話產出</a>'
+        +'<a href="https://issac-sjps.github.io/LearningAssistance/" target="_blank" class="fcard-sublink sl-main">🌐 資源入口</a>'
+        +'</div>'
+        +'<div class="fcard-foot">'
+        +'<a href="https://issac-sjps.github.io/LearningAssistance/學習扶助編班網.html" target="_blank" class="fbtn" style="background:rgba(20,184,166,.18);border:1px solid rgba(20,184,166,.4);color:#5eead4;">🏫 開始編班</a>'
+        +'<a href="https://github.com/issac-sjps/LearningAssistance" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
         +'</div>'
         +'</div>';
     }
