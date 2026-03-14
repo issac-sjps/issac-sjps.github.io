@@ -51,6 +51,13 @@
     .fcard-desc{font-size:11.5px;line-height:1.8;margin-bottom:14px;}
     .fpills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
     .fpill{font-size:9px;padding:2px 8px;border-radius:10px;border:1px solid;letter-spacing:.3px;}
+    /* CHGame */
+    .fcard-chgame{background:linear-gradient(160deg,#181000 0%,#2a1f00 60%,#181000 100%);border:1px solid rgba(234,179,8,.38);box-shadow:0 8px 32px rgba(234,179,8,.1);}
+    .fcard-chgame:hover{box-shadow:0 20px 56px rgba(234,179,8,.22);}
+    .fcard-chgame::before{background:linear-gradient(90deg,#eab308,#f97316,#eab308);}
+    .fcard-chgame .fcard-sub{color:#fb923c;}
+    .fcard-chgame .fcard-desc{color:#fde68a;}
+    .fcard-chgame .fpill{border-color:rgba(234,179,8,.3);color:#fde047;background:rgba(234,179,8,.08);}
     /* Tower */
     .fcard-tower{background:linear-gradient(160deg,#08102a 0%,#0e1a40 60%,#080e22 100%);border:1px solid rgba(124,58,237,.4);box-shadow:0 8px 32px rgba(124,58,237,.12);}
     .fcard-tower:hover{box-shadow:0 20px 56px rgba(124,58,237,.25);}
@@ -296,8 +303,9 @@
     "SpellingContest":{cat:"學習",icon:"📝",order:6,featured:0,demo:"",desc:"英文拼字比賽練習工具，透過互動測驗幫助學生準備拼字競賽。"},
     "TWstock":{cat:"金融",icon:"📈",order:7,featured:0,demo:"",desc:"台灣股市查詢介面，顯示個股資訊、走勢圖與基本財務數據。"},
     "issac-sjps.github.io":{cat:"個人",icon:"🌐",order:8,featured:0,demo:"https://issac-sjps.github.io",desc:"個人 GitHub Pages 首頁，作品集與學習歷程展示。"},
-    "TypingGame":{cat:"學習",icon:"⌨️",order:9,featured:0,demo:"https://issac-sjps.github.io/TypingGame/",
-      desc:"新莊國小打字練習網，四合一訓練平台！英文快打高手、中文快打高手、英文打字遊戲、中文打字遊戲，從基礎練速到遊戲挑戰，讓打字變成每天都想玩的事。"},
+    "TypingGame":{cat:"學習",icon:"⌨️",order:9,featured:1,demo:"https://issac-sjps.github.io/TypingGame/",
+      desc:"新莊國小打字練習網，四合一訓練平台！英文快打高手、中文快打高手、英文打字遊戲、中文打字遊戲，從基礎練速到遊戲挑戰，讓打字變成每天都想玩的事。",
+      chgame:"https://issac-sjps.github.io/TypingGame/CHGame"},
     "Sjps-LearningAssistance":{cat:"教師工具",icon:"📋",order:10,featured:0,demo:"https://issac-sjps.github.io/Sjps-LearningAssistance/",
       desc:"新莊國小學習扶助編班系統，支援拖曳編班、學生名冊管理、家長電話對應、Excel 匯入匯出、開課通知單套印，全流程一站搞定，大幅減輕行政負擔。"},
     "RegistrarSection":{cat:"教師工具",icon:"🏫",order:11,featured:0,demo:"https://issac-sjps.github.io/RegistrarSection/",
@@ -312,6 +320,30 @@
       desc:"數學公式轉換器！把 AI（NotebookLM、ChatGPT 等）產生的 LaTeX 數學公式，一鍵修復並複製成可直接貼進 Word 的格式，內建分數、根號、角、三角形等常用符號工具箱，老師出題再也不怕公式亂碼。"},
     "Repeat":{cat:"學習",icon:"🎤",order:16,featured:0,demo:"https://issac-sjps.github.io/Repeat/",
       desc:"錄音複讀網，結合中文語音辨識、波形動畫與自動朗讀，說出來就能看見聲音波形、聽到回放，適合語言練習、跟讀訓練與口語表達自我檢視。"},
+    "Calendar":{cat:"教師工具",icon:"📅",order:17,featured:0,demo:"https://issac-sjps.github.io/Calendar/",
+      desc:"新莊國小地點行事曆，依處室（教務、學務、輔導、總務）與地點（大穿堂、視聽教室、球場等15+場地）雙維度篩選。校內 @sjps.kh.edu.tw 帳號自動取得編輯權，支援批次匯入、CSV 下載，讓全校場地借用一目瞭然。"},
+    "Sjps-ScoreSystem":{cat:"教師工具",icon:"📊",order:18,featured:0,demo:"https://issac-sjps.github.io/Sjps-ScoreSystem/",
+      desc:"新莊國小成績管理系統，老師登入後可輸入與管理各科成績，學生以 Google 帳號登入即可即時查閱自己的成績，雙角色權限設計，讓成績登錄與查詢流程更安全便利。"},
+    "ToDoList":{cat:"工具",icon:"✅",order:19,featured:0,demo:"https://issac-sjps.github.io/ToDoList/",
+      desc:"本地版代辦清單，資料存在瀏覽器不需登入，輕量、簡潔、開即用，適合快速記錄每日待辦事項，隨時勾選完成。"},
+    "CourseScheduling":{cat:"教師工具",icon:"🗓",order:20,featured:0,demo:"https://issac-sjps.github.io/CourseScheduling/",
+      desc:"國小自動排課系統（開發中），目標是根據師資、教室、節次等限制條件自動排出合理課表，功能持續完善中。"},
+    "SpeakVoiceForTeacher":{cat:"教師工具",icon:"🗣",order:21,featured:0,demo:"https://issac-sjps.github.io/SpeakVoiceForTeacher/",
+      desc:"英文口說出題系統，由英文老師提出需求而開發，隨機產生英文口說題目並自動語音朗讀，讓老師快速進行口說練習課，省去手動出題的時間。"},
+    "Sjps-BookPrice":{cat:"教師工具",icon:"📚",order:22,featured:0,demo:"https://issac-sjps.github.io/Sjps-BookPrice/",
+      desc:"新莊國小教科書價格紀錄系統，可記錄各年級各科教科書售價，方便每學年核對書款、製作收費明細，讓教科書費用管理清楚有據可查。"},
+    "OnlineChat":{cat:"工具",icon:"💬",order:23,featured:0,demo:"https://issac-sjps.github.io/OnlineChat/",
+      desc:"即時聊天室，支援 Google 登入或匿名訪客，可公開大廳留言也可點選在線用戶一對一私訊，內建檔案傳送、自訂暱稱頭像、發言統計，輕鬆在瀏覽器裡完成即時溝通與檔案交換。"},
+    "Headshot":{cat:"工具",icon:"📸",order:24,featured:0,demo:"https://issac-sjps.github.io/Headshot/",
+      desc:"證件照裁切工具，支援 1 吋、2 吋、半身等多種規格，AI 自動去背後換成白色背景，可調整壓縮品質、輸出尺寸與格式（JPG/PNG/WEBP），預估檔案大小即時顯示，簡單幾步驟輸出符合規定的證件照。"},
+    "Sjps-AdPush":{cat:"教師工具",icon:"📺",order:25,featured:0,demo:"https://issac-sjps.github.io/Sjps-AdPush/",
+      desc:"新莊國小廣告機推播系統，上傳圖片、影片、PPT 到 Google Drive，設定好播放秒數與雙版面配置，任何一台大屏或廣告機打開網頁就能同步播放。支援背景音樂、分區輪播、隨時遠端更新，全校數位看板管理從此超輕鬆。"},
+    "QRcode":{cat:"工具",icon:"🔲",order:26,featured:0,demo:"https://issac-sjps.github.io/QRcode/",
+      desc:"新莊國小 QR Code 產生器，支援縮網址、自訂標題、調整字體大小、QR 顏色、圓角/圓點樣式、標題位置，即時預覽後一鍵下載圖檔，讓資源分享只需幾秒鐘。"},
+    "JLPT-N2":{cat:"學習",icon:"🇯🇵",order:27,featured:0,demo:"https://issac-sjps.github.io/JLPT-N2/",
+      desc:"JLPT N2 日語檢定練習網，內建題庫與詳細解析，隨時隨地都能刷題備考，讓通過 N2 的目標更近一步。"},
+    "VocabularyTest":{cat:"學習",icon:"📖",order:28,featured:0,demo:"https://issac-sjps.github.io/VocabularyTest/",
+      desc:"學習扶助英語單字每日考試網，專為學習扶助學生打造，每堂課學習 5 個新單字，按日曆選擇日期後即進入對應的遊戲與選擇題練習，讓單字記憶變得有趣、有節奏、有成就感。"},
   };
 
   function autoDemoUrl(name, override) {
@@ -389,6 +421,30 @@
     }
     if(p.name==="Journal"){
       return '<div class="fcard fcard-journal" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s"><div class="fcard-body"><div class="fcard-top"><div class="fcard-icon">📔</div><span class="feat-label">📔 DIARY APP</span></div><div class="fcard-name">Journal 日記</div><div class="fcard-sub">私人日記 App · Google 登入</div><div class="fcard-desc">'+p.desc+'</div><div class="fpills"><span class="fpill">Firebase Auth</span><span class="fpill">心情記錄</span><span class="fpill">地點標記</span><span class="fpill">日曆總覽</span></div></div><div class="fcard-foot"><a href="'+p.demo+'" target="_blank" class="fbtn fbtn-journal">📖 開啟日記</a><a href="'+p.url+'" target="_blank" class="fbtn fbtn-code">GitHub →</a></div></div>';
+    }
+    if(p.name==="TypingGame"){
+      return '<div class="fcard fcard-chgame" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s">'
+        +'<div class="fcard-body">'
+        +'<div class="fcard-top"><div class="fcard-icon">⌨️</div>'
+        +'<span class="feat-label" style="background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);color:#fde047;">⌨ TYPING GAME</span></div>'
+        +'<div class="fcard-name">中文打字英雄大冒險</div>'
+        +'<div class="fcard-sub">TypingGame/CHGame · 100 關打字 RPG</div>'
+        +'<div class="fcard-desc">用打字擊敗妖怪！答對注音中文字，英雄出擊造成傷害，金幣可升級血量、攻擊、防禦、爆擊，還有 <strong style="color:#fde047">12 種特殊武器</strong>、聖遺物、道具系統。通關 100 關後解鎖<strong style="color:#fbbf24"> ⭐ 二周目超難模式</strong>，妖怪成長速度暴增，挑戰極限！</div>'
+        +'<div class="fpills">'
+        +'<span class="fpill">100 關</span>'
+        +'<span class="fpill">12 種武器</span>'
+        +'<span class="fpill">聖遺物系統</span>'
+        +'<span class="fpill">二周目模式</span>'
+        +'<span class="fpill">進度自動存檔</span>'
+        +'</div></div>'
+        +'<div class="fcard-sublinks">'
+        +'<a href="https://issac-sjps.github.io/TypingGame/CHGame" target="_blank" class="fcard-sublink" style="background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);color:#fde047;">⚔ 中文打字英雄</a>'
+        +'<a href="https://issac-sjps.github.io/TypingGame/" target="_blank" class="fcard-sublink sl-main">🌐 打字練習首頁</a>'
+        +'</div>'
+        +'<div class="fcard-foot">'
+        +'<a href="https://issac-sjps.github.io/TypingGame/CHGame" target="_blank" class="fbtn" style="background:rgba(234,179,8,.18);border:1px solid rgba(234,179,8,.4);color:#fde047;">⚔ 開始冒險</a>'
+        +'<a href="https://github.com/issac-sjps/TypingGame" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
+        +'</div></div>';
     }
     if(p.name==="ClassroomSeatChart"){
       return '<div class="fcard fcard-seat" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s"><div class="fcard-body"><div class="fcard-top"><div class="fcard-icon">🪑</div><span class="feat-label">🏫 TEACHER TOOL</span></div><div class="fcard-name">ClassroomSeatChart</div><div class="fcard-sub">教室座位管理 · 教師工具</div><div class="fcard-desc">'+p.desc+'</div><div class="fpills"><span class="fpill">隨機排座</span><span class="fpill">自訂分組</span><span class="fpill">拖曳調整</span></div></div><div class="fcard-foot">'+(p.demo?'<a href="'+p.demo+'" target="_blank" class="fbtn fbtn-seat">✏ 排座位</a>':'')+'<a href="'+p.url+'" target="_blank" class="fbtn fbtn-code">GitHub →</a></div></div>';
