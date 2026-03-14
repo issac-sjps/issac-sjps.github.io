@@ -763,11 +763,18 @@
   }
   // Font size
   function setFont(size){
-    document.body.classList.remove('fs-small','fs-medium','fs-large');
+    // remove all possible size classes
+    ['xs','small','medium','large','xl'].forEach(s=>document.body.classList.remove('fs-'+s));
     document.body.classList.add('fs-'+size);
-    ['s','m','l'].forEach(s=>document.getElementById('fs-'+s).classList.remove('active'));
-    const map={small:'s',medium:'m',large:'l'};
-    document.getElementById('fs-'+map[size]).classList.add('active');
+    // remove active from all buttons
+    ['xs','s','m','l','xl'].forEach(s=>{
+      const el=document.getElementById('fs-'+s);
+      if(el) el.classList.remove('active');
+    });
+    // add active to clicked button
+    const map={xs:'xs',small:'s',medium:'m',large:'l',xl:'xl'};
+    const btn=document.getElementById('fs-'+map[size]);
+    if(btn) btn.classList.add('active');
     localStorage.setItem('fs',size);
   }
   // Restore saved preference
