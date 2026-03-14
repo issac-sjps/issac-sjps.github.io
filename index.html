@@ -33,6 +33,37 @@
     .ftab:hover{border-color:var(--accent);color:var(--accent);}
     .ftab.active{background:var(--accent);border-color:var(--accent);color:#000;font-weight:600;}
     .ftab .cnt{opacity:.65;margin-left:4px;}
+    /* Font size toggle */
+    .font-bar{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:8px 48px;}
+    .font-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+    .font-btn{background:transparent;border:1px solid var(--border);color:var(--muted);width:30px;height:30px;border-radius:6px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:600;transition:all .18s;display:flex;align-items:center;justify-content:center;}
+    .font-btn:hover{border-color:var(--accent);color:var(--accent);}
+    .font-btn.active{background:var(--accent);border-color:var(--accent);color:#000;}
+    .font-btn.fs-s{font-size:10px;}
+    .font-btn.fs-m{font-size:12px;}
+    .font-btn.fs-l{font-size:15px;}
+    /* Font size levels applied to card descriptions and names */
+    body.fs-small  .card-desc{font-size:10px;}
+    body.fs-small  .card-name{font-size:13px;}
+    body.fs-small  .fcard-desc{font-size:10.5px;}
+    body.fs-small  .fcard-name{font-size:17px;}
+    body.fs-small  .fpill{font-size:8px;}
+    body.fs-medium .card-desc{font-size:11px;}
+    body.fs-medium .card-name{font-size:15px;}
+    body.fs-medium .fcard-desc{font-size:11.5px;}
+    body.fs-medium .fcard-name{font-size:20px;}
+    body.fs-large  .card-desc{font-size:14px;}
+    body.fs-large  .card-name{font-size:17px;}
+    body.fs-large  .fcard-desc{font-size:14px;}
+    body.fs-large  .fcard-name{font-size:22px;}
+    body.fs-large  .fpill{font-size:10.5px;}
+    body.fs-large  .cat-tag,.fs-large .lang-tag{font-size:10.5px;}
+    body.fs-large  .cl,.fs-large .card-stars{font-size:12.5px;}
+    body.fs-large  .fbtn{font-size:12.5px;}
+    body.fs-large  .fcard-sub{font-size:12px;}
+    body.fs-large  .sec-head h2{font-size:17px;}
+    body.fs-large  .game-name{font-size:11.5px;}
+    body.fs-large  .fcard-sublink{font-size:11.5px;}
     .wrap{max-width:1200px;margin:0 auto;}
     .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding:36px 48px 0;}
     .sec-head h2{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;gap:8px;white-space:nowrap;}
@@ -648,6 +679,21 @@
     t.textContent=msg;t.className="show"+(err?" err":"");
     setTimeout(()=>t.className="",2800);
   }
+  // Font size
+  function setFont(size){
+    document.body.classList.remove('fs-small','fs-medium','fs-large');
+    document.body.classList.add('fs-'+size);
+    ['s','m','l'].forEach(s=>document.getElementById('fs-'+s).classList.remove('active'));
+    const map={small:'s',medium:'m',large:'l'};
+    document.getElementById('fs-'+map[size]).classList.add('active');
+    localStorage.setItem('fs',size);
+  }
+  // Restore saved preference
+  (function(){
+    const saved = localStorage.getItem('fs')||'medium';
+    setFont(saved);
+  })();
+
   function clearForm(){
     ["eid","fn","fd","fdemo","fico","ford"].forEach(id=>document.getElementById(id).value="");
     document.getElementById("fcat").value="遊戲";
