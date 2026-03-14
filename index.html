@@ -82,6 +82,13 @@
     .fcard-desc{font-size:11.5px;line-height:1.8;margin-bottom:14px;}
     .fpills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;}
     .fpill{font-size:9px;padding:2px 8px;border-radius:10px;border:1px solid;letter-spacing:.3px;}
+    /* SpellingContest */
+    .fcard-spell{background:linear-gradient(160deg,#180e04 0%,#261504 60%,#180e04 100%);border:1px solid rgba(251,146,60,.35);box-shadow:0 8px 32px rgba(251,146,60,.08);}
+    .fcard-spell:hover{box-shadow:0 20px 56px rgba(251,146,60,.2);}
+    .fcard-spell::before{background:linear-gradient(90deg,#f97316,#eab308,#22c55e);}
+    .fcard-spell .fcard-sub{color:#fb923c;}
+    .fcard-spell .fcard-desc{color:#fed7aa;}
+    .fcard-spell .fpill{border-color:rgba(251,146,60,.3);color:#fdba74;background:rgba(251,146,60,.08);}
     /* LearningAssistance */
     .fcard-la{background:linear-gradient(160deg,#051412 0%,#0a2420 60%,#051412 100%);border:1px solid rgba(20,184,166,.35);box-shadow:0 8px 32px rgba(20,184,166,.08);}
     .fcard-la:hover{box-shadow:0 20px 56px rgba(20,184,166,.2);}
@@ -353,12 +360,13 @@
     "ClassroomSeatChart":{cat:"教師工具",icon:"🪑",order:4,featured:1,demo:"https://issac-sjps.github.io/ClassroomSeatChart/",
       desc:"教室座位表管理工具，支援隨機排座、自訂分組、拖曳調整，讓老師輕鬆安排班級座位。"},
     "ScienceFair":{cat:"學習",icon:"🔬",order:5,featured:0,demo:"",desc:"科學展覽互動網頁，展示科學實驗成果，包含視覺化圖表與詳細說明。"},
-    "SpellingContest":{cat:"學習",icon:"📝",order:6,featured:0,demo:"",desc:"英文拼字比賽練習工具，透過互動測驗幫助學生準備拼字競賽。"},
+    "SpellingContest":{cat:"學習",icon:"📝",order:5,featured:1,
+      demo:"https://issac-sjps.github.io/SpellingContest/",
+      desc:"專為國小設計的 600 單字高效記憶系統！兩種訓練模式雙管齊下：【記憶練習】看英文聯想中文，刷新記憶迴路；【拼字輸入】看中文拼出英文，強化肌肉記憶。專為六年級英文拼字比賽打造，支援班級共學，全班一起練習，一人負責輸入答案，共同達成高效複習。"},
     "TWstock":{cat:"金融",icon:"📈",order:7,featured:0,demo:"",desc:"台灣股市查詢介面，顯示個股資訊、走勢圖與基本財務數據。"},
     "issac-sjps.github.io":{cat:"個人",icon:"🌐",order:8,featured:0,demo:"https://issac-sjps.github.io",desc:"個人 GitHub Pages 首頁，作品集與學習歷程展示。"},
     "TypingGame":{cat:"學習",icon:"⌨️",order:9,featured:1,demo:"https://issac-sjps.github.io/TypingGame/",
-      desc:"新莊國小打字練習網，四合一訓練平台！英文快打高手、中文快打高手、英文打字遊戲、中文打字遊戲，從基礎練速到遊戲挑戰，讓打字變成每天都想玩的事。",
-      chgame:"https://issac-sjps.github.io/TypingGame/CHGame"},
+      desc:"新莊國小打字練習網，四合一訓練平台！英文快打高手、中文快打高手、英文打字遊戲、中文打字遊戲，從基礎練速到遊戲挑戰，讓打字變成每天都想玩的事。"},
     "Sjps-LearningAssistance":{cat:"教師工具",icon:"📋",order:10,featured:0,demo:"https://issac-sjps.github.io/Sjps-LearningAssistance/",
       desc:"新莊國小學習扶助編班系統，支援拖曳編班、學生名冊管理、家長電話對應、Excel 匯入匯出、開課通知單套印，全流程一站搞定，大幅減輕行政負擔。"},
     "RegistrarSection":{cat:"教師工具",icon:"🏫",order:11,featured:0,demo:"https://issac-sjps.github.io/RegistrarSection/",
@@ -408,7 +416,7 @@
       ]},
     "test":{cat:"其他",icon:"🐍",order:29,featured:0,demo:"",
       desc:"Python Django 本地練習專案，嘗試以 Python 後端框架開發動態網頁，探索與純前端 HTML 截然不同的伺服器端渲染架構，是踏入後端開發的第一步。（本地運行，無線上 Demo）"},
-    "Home":{cat:"工具",icon:"🔍",order:3,featured:1,demo:"https://issac-sjps.github.io/Home/",
+    "Home":{cat:"工具",icon:"🔍",order:13,featured:0,demo:"https://issac-sjps.github.io/Home/",
       desc:"GitHub 全站網頁掃描器！輸入任何 GitHub 帳號，自動呼叫 GitHub API 掃出該帳號底下所有 GitHub Pages 網站，一鍵瀏覽全部已部署頁面，再也不怕漏掉任何一個專案。"},
   };
 
@@ -492,23 +500,25 @@
       return '<div class="fcard fcard-chgame" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s">'
         +'<div class="fcard-body">'
         +'<div class="fcard-top"><div class="fcard-icon">⌨️</div>'
-        +'<span class="feat-label" style="background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);color:#fde047;">⌨ TYPING GAME</span></div>'
-        +'<div class="fcard-name">中文打字英雄大冒險</div>'
-        +'<div class="fcard-sub">TypingGame/CHGame · 100 關打字 RPG</div>'
-        +'<div class="fcard-desc">用打字擊敗妖怪！答對注音中文字，英雄出擊造成傷害，金幣可升級血量、攻擊、防禦、爆擊，還有 <strong style="color:#fde047">12 種特殊武器</strong>、聖遺物、道具系統。通關 100 關後解鎖<strong style="color:#fbbf24"> ⭐ 二周目超難模式</strong>，妖怪成長速度暴增，挑戰極限！</div>'
+        +'<span class="feat-label" style="background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);color:#fde047;">⌨ TYPING RPG</span></div>'
+        +'<div class="fcard-name">打字英雄大冒險</div>'
+        +'<div class="fcard-sub">TypingGame · 中文版 ＋ 英文版 · 各 100 關</div>'
+        +'<div class="fcard-desc">用打字擊敗妖怪的 RPG 冒險！答對題目英雄出擊，金幣升級血量、攻擊、防禦、爆擊。<strong style="color:#fde047">中文版</strong>答注音中文字、<strong style="color:#86efac">英文版</strong>看提示拼出英文單字，順便訓練英打！12 種武器、聖遺物道具、⭐ 二周目超難模式，進度自動存檔。</div>'
         +'<div class="fpills">'
-        +'<span class="fpill">100 關</span>'
+        +'<span class="fpill">中文 ＋ 英文版</span>'
+        +'<span class="fpill">各 100 關</span>'
         +'<span class="fpill">12 種武器</span>'
         +'<span class="fpill">聖遺物系統</span>'
-        +'<span class="fpill">二周目模式</span>'
-        +'<span class="fpill">進度自動存檔</span>'
+        +'<span class="fpill">NG+ 二周目</span>'
         +'</div></div>'
         +'<div class="fcard-sublinks">'
         +'<a href="https://issac-sjps.github.io/TypingGame/CHGame" target="_blank" class="fcard-sublink" style="background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);color:#fde047;">⚔ 中文打字英雄</a>'
+        +'<a href="https://issac-sjps.github.io/TypingGame/ENGame" target="_blank" class="fcard-sublink" style="background:rgba(134,239,172,.12);border:1px solid rgba(134,239,172,.3);color:#86efac;">🗡 英文打字英雄</a>'
         +'<a href="https://issac-sjps.github.io/TypingGame/" target="_blank" class="fcard-sublink sl-main">🌐 打字練習首頁</a>'
         +'</div>'
         +'<div class="fcard-foot">'
-        +'<a href="https://issac-sjps.github.io/TypingGame/CHGame" target="_blank" class="fbtn" style="background:rgba(234,179,8,.18);border:1px solid rgba(234,179,8,.4);color:#fde047;">⚔ 開始冒險</a>'
+        +'<a href="https://issac-sjps.github.io/TypingGame/CHGame" target="_blank" class="fbtn" style="background:rgba(234,179,8,.18);border:1px solid rgba(234,179,8,.4);color:#fde047;">⚔ 中文版</a>'
+        +'<a href="https://issac-sjps.github.io/TypingGame/ENGame" target="_blank" class="fbtn" style="background:rgba(134,239,172,.13);border:1px solid rgba(134,239,172,.35);color:#86efac;">🗡 英文版</a>'
         +'<a href="https://github.com/issac-sjps/TypingGame" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
         +'</div></div>';
     }
@@ -561,6 +571,35 @@
         +'<div class="fcard-foot">'
         +'<a href="https://issac-sjps.github.io/LearningAssistance/學習扶助編班網.html" target="_blank" class="fbtn" style="background:rgba(20,184,166,.18);border:1px solid rgba(20,184,166,.4);color:#5eead4;">🏫 開始編班</a>'
         +'<a href="https://github.com/issac-sjps/LearningAssistance" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
+        +'</div>'
+        +'</div>';
+    }
+    if(p.name==="SpellingContest"){
+      return '<div class="fcard fcard-spell" data-cat="'+p.cat+'" style="animation-delay:'+delay+'s">'
+        +'<div class="fcard-body">'
+        +'<div class="fcard-top">'
+        +'<div class="fcard-icon">📝</div>'
+        +'<span class="feat-label" style="background:rgba(251,146,60,.15);border:1px solid rgba(251,146,60,.3);color:#fdba74;">📚 600 WORDS</span>'
+        +'</div>'
+        +'<div class="fcard-name">600 單字拼字系統</div>'
+        +'<div class="fcard-sub">SpellingContest · 六年級拼字比賽特訓</div>'
+        +'<div class="fcard-desc">專為國小六年級英文拼字比賽打造的雙模式訓練系統！<strong style="color:#fdba74">【記憶模式】</strong>看英文聯想中文，快速刷新記憶迴路；<strong style="color:#86efac">【拼字模式】</strong>看中文拼出英文，答對率即時統計。支援班級共學，全班一起投影練習，高效完成 600 單字特訓！</div>'
+        +'<div class="fpills">'
+        +'<span class="fpill">600 個單字</span>'
+        +'<span class="fpill">雙模式訓練</span>'
+        +'<span class="fpill">班級共學</span>'
+        +'<span class="fpill">正確率統計</span>'
+        +'<span class="fpill">題庫自訂管理</span>'
+        +'</div>'
+        +'</div>'
+        +'<div class="fcard-sublinks">'
+        +'<a href="https://issac-sjps.github.io/SpellingContest/" target="_blank" class="fcard-sublink" style="background:rgba(251,146,60,.13);border:1px solid rgba(251,146,60,.3);color:#fdba74;">👁 記憶練習（英→中）</a>'
+        +'<a href="https://issac-sjps.github.io/SpellingContest/600-word-input" target="_blank" class="fcard-sublink" style="background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.28);color:#86efac;">✍ 拼字輸入（中→英）</a>'
+        +'</div>'
+        +'<div class="fcard-foot">'
+        +'<a href="https://issac-sjps.github.io/SpellingContest/" target="_blank" class="fbtn" style="background:rgba(251,146,60,.16);border:1px solid rgba(251,146,60,.38);color:#fdba74;">👁 記憶練習</a>'
+        +'<a href="https://issac-sjps.github.io/SpellingContest/600-word-input" target="_blank" class="fbtn" style="background:rgba(134,239,172,.12);border:1px solid rgba(134,239,172,.32);color:#86efac;">✍ 拼字輸入</a>'
+        +'<a href="https://github.com/issac-sjps/SpellingContest" target="_blank" class="fbtn fbtn-code">GitHub →</a>'
         +'</div>'
         +'</div>';
     }
